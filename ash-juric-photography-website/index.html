@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ash Juric Photography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --black: #050505; --deep: #0a0a0c; --charcoal: #111115; --smoke: #1a1a1f;
+    --silver: #a8a49e; --light-silver: #c8c4be; --cream: #e8e2d8;
+    --gold: #b8965a; --gold-light: #d4aa6e; --white: #f5f0ea; --nav-height: 96px;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--cream); font-family: 'Raleway', sans-serif; font-weight: 300; overflow-x: hidden; cursor: none; }
+
+  /* CURSOR */
+  .cursor { position: fixed; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .3s, height .3s; mix-blend-mode: difference; }
+  .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(184,150,90,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .3s, height .3s, left .06s, top .06s; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); background: var(--black); border-bottom: 1px solid rgba(184,150,90,0.15); display: flex; align-items: center; justify-content: space-between; padding: 0 4rem; z-index: 1000; transition: background .4s; }
+  nav.scrolled { background: rgba(5,5,5,0.97); backdrop-filter: blur(12px); }
+  .nav-logo { height: 68px; opacity: 0.95; filter: brightness(1.1) contrast(1.05); transition: opacity .3s; }
+  .nav-logo:hover { opacity: 1; }
+  .nav-links { display: flex; align-items: center; gap: 3rem; list-style: none; }
+  .nav-links a { font-family: 'Cinzel', serif; font-size: .68rem; letter-spacing: .2em; color: var(--silver); text-decoration: none; text-transform: uppercase; transition: color .3s; position: relative; }
+  .nav-links a::after { content:''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-dropdown { position: relative; }
+  .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(8,8,10,0.98); border: 1px solid rgba(184,150,90,0.2); backdrop-filter: blur(20px); padding: 0.5rem 0; min-width: 160px; opacity: 0; pointer-events: none; transition: opacity .25s; margin-top: 0; }
+  .dropdown-menu::before { content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px; }
+  .nav-dropdown:hover .dropdown-menu { opacity: 1; pointer-events: all; }
+  .dropdown-menu a { display: block; padding: .7rem 1.5rem; font-family: 'Cinzel', serif; font-size: .62rem; letter-spacing: .15em; color: var(--silver); text-decoration: none; transition: color .2s, background .2s; }
+  .dropdown-menu a:hover { color: var(--gold-light); background: rgba(184,150,90,0.06); padding-left: 1.5rem; }
+  .dropdown-menu a::after { display: none; }
+  .nav-dropdown > a::before { content: '▾'; margin-left: .4rem; font-size: .6rem; color: var(--gold); }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .nav-hamburger span { width: 24px; height: 1px; background: var(--silver); transition: all .3s; }
+
+  /* HERO */
+  #home { height: 100vh; position: relative; display: grid; grid-template-columns: 1fr 1fr 1fr; overflow: hidden; }
+  .hero-panel { position: relative; overflow: hidden; }
+  .hero-panel img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.16,1,.3,1), filter .6s; filter: brightness(.5) saturate(.8); }
+  .hero-panel:hover img { transform: scale(1.05); filter: brightness(.65) saturate(.9); }
+  .hero-panel-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(5,5,5,.6) 100%); }
+  .hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; pointer-events: none; padding-top: var(--nav-height); }
+  .hero-title { font-family: 'Cinzel', serif; font-size: clamp(2.5rem,7vw,6rem); font-weight: 400; letter-spacing: .3em; color: var(--white); text-align: center; line-height: 1.1; opacity: 0; transform: translateY(30px); animation: fadeUp 1.2s .3s forwards; text-shadow: 0 0 80px rgba(0,0,0,.8); }
+  .hero-subtitle { font-family: 'Raleway', sans-serif; font-size: clamp(.6rem,1.2vw,.8rem); letter-spacing: .5em; color: var(--gold); text-transform: uppercase; margin-top: 1rem; opacity: 0; animation: fadeUp 1.2s .7s forwards; }
+  .hero-divider { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 1.5rem auto; opacity: 0; animation: fadeIn 1s 1s forwards; }
+  .hero-quote-excerpt { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(.9rem,1.5vw,1.1rem); color: var(--light-silver); text-align: center; max-width: 480px; line-height: 1.8; opacity: 0; animation: fadeUp 1.2s 1.1s forwards; padding: 0 2rem; }
+
+  /* SECTIONS */
+  section { padding: 7rem 6rem; }
+  .section-label { font-family: 'Cinzel', serif; font-size: .62rem; letter-spacing: .4em; color: var(--gold); text-transform: uppercase; margin-bottom: 1rem; display: block; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,4vw,3.5rem); font-weight: 300; color: var(--white); line-height: 1.1; margin-bottom: 2rem; }
+  .gold-line { width: 80px; height: 1px; background: linear-gradient(to right, var(--gold), transparent); margin-bottom: 2.5rem; }
+
+  /* FEATURED */
+  #featured { background: var(--deep); padding: 7rem 0; }
+  .featured-header { text-align: center; padding: 0 6rem 4rem; }
+  .featured-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; grid-template-rows: 340px 340px; gap: 3px; }
+  .featured-item { position: relative; overflow: hidden; cursor: pointer; }
+  .featured-item:first-child { grid-row: 1 / 3; }
+  .featured-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.16,1,.3,1), filter .5s; filter: brightness(.8) saturate(.85); }
+  .featured-item:hover img { transform: scale(1.06); filter: brightness(.95) saturate(1); }
+  .featured-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,5,5,.7) 0%, transparent 60%); opacity: 0; transition: opacity .4s; display: flex; align-items: flex-end; padding: 2rem; }
+  .featured-item:hover .featured-item-overlay { opacity: 1; }
+  .featured-item-label { font-family: 'Cinzel', serif; font-size: .65rem; letter-spacing: .3em; color: var(--cream); text-transform: uppercase; }
+
+  /* QUOTE */
+  #quote { background: var(--black); padding: 8rem 6rem; text-align: center; position: relative; overflow: hidden; }
+  #quote::before { content: '\201C'; position: absolute; font-family: 'Cormorant Garamond', serif; font-size: 30rem; color: rgba(184,150,90,.04); top: -6rem; left: 50%; transform: translateX(-50%); line-height: 1; pointer-events: none; }
+  .quote-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.2rem,2.5vw,1.9rem); font-weight: 300; color: var(--light-silver); max-width: 860px; margin: 0 auto; line-height: 1.9; position: relative; z-index: 1; }
+  .quote-attr { margin-top: 2.5rem; font-family: 'Cinzel', serif; font-size: .62rem; letter-spacing: .4em; color: var(--gold); text-transform: uppercase; }
+
+  /* ABOUT */
+  #about { background: var(--charcoal); display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; padding: 7rem 8rem; }
+  .about-image-wrap { position: relative; }
+  .about-image-wrap::before { content: ''; position: absolute; top: -20px; left: -20px; right: 20px; bottom: 20px; border: 1px solid rgba(184,150,90,.25); pointer-events: none; z-index: 0; }
+  .about-image-wrap img { width: 100%; aspect-ratio: 3/4; object-fit: cover; filter: brightness(.85) saturate(.8); position: relative; z-index: 1; }
+  .about-content p { font-size: 1rem; line-height: 1.9; color: var(--silver); margin-bottom: 1.5rem; }
+  .about-content p strong { color: var(--cream); font-weight: 400; }
+  .btn-ghost { display: inline-block; margin-top: 1.5rem; padding: .9rem 2.5rem; border: 1px solid rgba(184,150,90,.5); font-family: 'Cinzel', serif; font-size: .65rem; letter-spacing: .25em; color: var(--gold); text-decoration: none; text-transform: uppercase; transition: all .4s; position: relative; overflow: hidden; }
+  .btn-ghost::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: translateX(-100%); transition: transform .4s cubic-bezier(.16,1,.3,1); z-index: -1; }
+  .btn-ghost:hover { color: var(--black); border-color: var(--gold); }
+  .btn-ghost:hover::before { transform: translateX(0); }
+
+  /* GALLERY */
+  #gallery { background: var(--deep); padding: 7rem 0; }
+  .gallery-header { padding: 0 6rem 4rem; }
+  .gallery-tabs { display: flex; gap: 0; margin-bottom: 3rem; padding: 0 6rem; border-bottom: 1px solid rgba(184,150,90,.15); overflow-x: auto; }
+  .gallery-tab { font-family: 'Cinzel', serif; font-size: .62rem; letter-spacing: .25em; color: var(--silver); padding: .75rem 2rem .75rem 0; cursor: pointer; text-transform: uppercase; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .3s, border-color .3s; white-space: nowrap; }
+  .gallery-tab:hover { color: var(--cream); }
+  .gallery-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+  .gallery-grid-item { position: relative; overflow: hidden; aspect-ratio: 4/5; cursor: pointer; }
+  .gallery-grid-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.16,1,.3,1), filter .5s; filter: brightness(.82) saturate(.85); }
+  .gallery-grid-item:hover img { transform: scale(1.06); filter: brightness(1) saturate(1); }
+  .gallery-grid-item-overlay { position: absolute; inset: 0; background: rgba(5,5,5,.45); opacity: 0; transition: opacity .4s; display: flex; align-items: center; justify-content: center; }
+  .gallery-grid-item:hover .gallery-grid-item-overlay { opacity: 1; }
+  .gallery-zoom-icon { width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.4rem; transform: scale(.7); transition: transform .3s; }
+  .gallery-grid-item:hover .gallery-zoom-icon { transform: scale(1); }
+  .gallery-panel { display: none; }
+  .gallery-panel.active { display: block; }
+  .gallery-coming-soon { padding: 5rem 6rem; text-align: center; }
+
+  /* SCHEDULING */
+  #scheduling { background: var(--charcoal); padding: 7rem 6rem; }
+  .scheduling-inner { max-width: 900px; margin: 0 auto; }
+  .scheduling-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; margin-bottom: 5rem; align-items: start; }
+  .scheduling-info p { color: var(--silver); line-height: 1.9; font-size: .95rem; margin-bottom: 1.2rem; }
+  .scheduling-services { display: flex; flex-direction: column; }
+  .service-item { padding: 1.2rem 0; border-bottom: 1px solid rgba(184,150,90,.12); display: flex; align-items: baseline; gap: 1.5rem; }
+  .service-item:first-child { border-top: 1px solid rgba(184,150,90,.12); }
+  .service-name { font-family: 'Cinzel', serif; font-size: .65rem; letter-spacing: .2em; color: var(--cream); text-transform: uppercase; flex: 1; }
+  .service-detail { font-size: .85rem; color: var(--silver); font-style: italic; font-family: 'Cormorant Garamond', serif; }
+  .calendar-container { background: var(--smoke); border: 1px solid rgba(184,150,90,.15); border-radius: 2px; overflow: hidden; }
+  .calendar-header { padding: 1.2rem 2rem; border-bottom: 1px solid rgba(184,150,90,.12); display: flex; align-items: center; gap: 1rem; }
+  .calendar-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .calendar-header-text { font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .3em; color: var(--silver); text-transform: uppercase; }
+  .calendar-container iframe { width: 100%; height: 600px; border: none; display: block; background: #ffffff; }
+
+  /* LIGHTBOX */
+  .lightbox { position: fixed; inset: 0; background: rgba(3,3,3,.97); z-index: 9000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .4s; }
+  .lightbox.open { opacity: 1; pointer-events: all; }
+  .lightbox img { max-width: 90vw; max-height: 88vh; object-fit: contain; transform: scale(.95); transition: transform .4s cubic-bezier(.16,1,.3,1); }
+  .lightbox.open img { transform: scale(1); }
+  .lightbox-close { position: absolute; top: 2rem; right: 2.5rem; font-family: 'Cinzel', serif; font-size: .7rem; letter-spacing: .3em; color: var(--silver); cursor: pointer; transition: color .3s; text-transform: uppercase; }
+  .lightbox-close:hover { color: var(--gold); }
+  .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); font-size: 2rem; color: var(--silver); cursor: pointer; padding: 1.5rem; transition: color .3s; user-select: none; }
+  .lightbox-nav:hover { color: var(--gold); }
+  .lightbox-prev { left: 1rem; }
+  .lightbox-next { right: 1rem; }
+
+  /* FOOTER */
+  footer { background: var(--black); border-top: 1px solid rgba(184,150,90,.1); padding: 3rem 6rem; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 2rem; }
+  .footer-logo img { height: 52px; opacity: .7; filter: brightness(1.1); }
+  .footer-center p { font-family: 'Cinzel', serif; font-size: .55rem; letter-spacing: .3em; color: rgba(168,164,158,.4); text-transform: uppercase; text-align: center; }
+  .footer-links { display: flex; gap: 2rem; justify-content: flex-end; }
+  .footer-links a { font-family: 'Cinzel', serif; font-size: .58rem; letter-spacing: .2em; color: rgba(168,164,158,.5); text-decoration: none; text-transform: uppercase; transition: color .3s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-contact { display: flex; flex-direction: column; gap: .5rem; }
+  .footer-contact a { font-family: 'Cinzel', serif; font-size: .58rem; letter-spacing: .15em; color: rgba(168,164,158,.5); text-decoration: none; text-transform: uppercase; transition: color .3s; display: flex; align-items: center; gap: .5rem; }
+  .footer-contact a:hover { color: var(--gold); }
+  .footer-contact a span { font-size: .7rem; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { to { opacity: 1; } }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s, transform .8s; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .35s; }
+
+  /* GRAIN */
+  body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9990; opacity: .4; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; height: 72px; background: #050505 !important; }
+    :root { --nav-height: 72px; }
+    .nav-logo { height: 52px; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+      background: #050505;
+      padding: 2.5rem 2rem;
+      z-index: 999;
+      gap: 0;
+      overflow-y: auto;
+      border-top: 1px solid rgba(184,150,90,.15);
+    }
+    .nav-links.open li {
+      list-style: none;
+      border-bottom: 1px solid rgba(184,150,90,.08);
+      padding: 1rem 0;
+    }
+    .nav-links.open li a {
+      font-size: .75rem;
+      letter-spacing: .25em;
+      color: var(--cream);
+    }
+    .nav-links.open li a::before { display: none; }
+    .nav-hamburger { display: flex; }
+
+    /* Mobile dropdown — flat list under Gallery */
+    .dropdown-menu {
+      position: static !important;
+      opacity: 1 !important;
+      pointer-events: all !important;
+      border: none !important;
+      background: transparent !important;
+      padding: 0.75rem 0 0 1.2rem !important;
+      transform: none !important;
+      min-width: unset !important;
+      display: flex !important;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+    .dropdown-menu a {
+      padding: .45rem 0 !important;
+      font-size: .65rem !important;
+      color: var(--silver) !important;
+      letter-spacing: .2em;
+    }
+    .nav-dropdown > a::before { content: ''; }
+
+    #home { grid-template-columns: 1fr; height: 70vh; }
+    .hero-panel { display: none; }
+    .hero-panel:first-child { display: block; }
+    .hero-title { font-size: clamp(2rem, 10vw, 3rem); letter-spacing: .2em; }
+    section { padding: 4rem 1.5rem; }
+    #featured { padding: 4rem 0; }
+    .featured-header { padding: 0 1.5rem 2rem; }
+    .featured-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; gap: 2px; }
+    .featured-item:first-child { grid-row: auto; grid-column: 1 / 3; height: 260px; }
+    .featured-item { height: 200px; }
+    #about { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 2.5rem; }
+    .about-image-wrap { max-width: 320px; margin: 0 auto; }
+    .about-image-wrap::before { display: none; }
+    .scheduling-intro { grid-template-columns: 1fr; gap: 2rem; }
+    #scheduling { padding: 4rem 1.5rem; }
+    .scheduling-inner { max-width: 100%; }
+    .calendar-container iframe { height: 500px; }
+    footer { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; padding: 2.5rem 1.5rem; }
+    .footer-links { justify-content: center; }
+    .footer-right { text-align: center; }
+    #quote { padding: 4rem 1.5rem; }
+    .quote-text { font-size: clamp(1rem, 4vw, 1.4rem); }
+    .gallery-header { padding: 0 1.5rem 2rem; }
+    .gallery-tabs { padding: 0 1.5rem; gap: 0; }
+    .gallery-tab { font-size: .55rem; padding: .6rem 1rem .6rem 0; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-coming-soon { padding: 3rem 1.5rem; }
+    .section-title { font-size: clamp(1.6rem, 6vw, 2.5rem); }
+    .btn-ghost { padding: .8rem 1.8rem; font-size: .6rem; }
+  }
+  @media (max-width: 480px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .featured-grid { grid-template-columns: 1fr; }
+    .featured-item:first-child { grid-column: 1; height: 300px; }
+    .featured-item { height: 240px; }
+    .hero-title { font-size: 2rem; letter-spacing: .15em; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home"><img src="images/Logo1.png" alt="Ash Juric Photography" class="nav-logo"></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li class="nav-dropdown">
+      <a href="#gallery">Gallery</a>
+      <div class="dropdown-menu">
+        <a href="#gallery" onclick="switchTab('fashion');return false;">Fashion</a>
+        <a href="#gallery" onclick="switchTab('wildlife');return false;">Wildlife</a>
+        <a href="#gallery" onclick="switchTab('portraits');return false;">Portraits</a>
+        <a href="#gallery" onclick="switchTab('nature');return false;">Nature</a>
+        <a href="#gallery" onclick="switchTab('other');return false;">Other</a>
+      </div>
+    </li>
+    <li><a href="#scheduling">Appointments</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO — mix of fashion + wildlife -->
+<section id="home">
+  <div class="hero-panel">
+    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1069_jrvods.jpg" alt="Wolves in Snow">
+    <div class="hero-panel-overlay"></div>
+  </div>
+  <div class="hero-panel">
+    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7827_myclqb.jpg" alt="Montana Fashion">
+    <div class="hero-panel-overlay"></div>
+  </div>
+  <div class="hero-panel">
+    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4551_magco6.jpg" alt="Grizzly Bear">
+    <div class="hero-panel-overlay"></div>
+  </div>
+  <div class="hero-overlay">
+    <div class="hero-title">ASH JURIC</div>
+    <div class="hero-subtitle">Photography &nbsp;·&nbsp; Montana</div>
+    <div class="hero-divider"></div>
+    <div class="hero-quote-excerpt">Where the wild meets the refined.</div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section id="featured">
+  <div class="featured-header reveal">
+    <span class="section-label">Selected Work</span>
+    <h2 class="section-title">Featured Images</h2>
+    <div class="gold-line"></div>
+  </div>
+  <div class="featured-grid" id="featuredGrid">
+    <div class="featured-item" onclick="openLightbox(0)">
+      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4551_magco6.jpg" alt="Grizzly Bear">
+      <div class="featured-item-overlay"><span class="featured-item-label">Grizzly Country</span></div>
+    </div>
+    <div class="featured-item" onclick="openLightbox(1)">
+      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_6537_wdvdxy.jpg" alt="Montana Fashion">
+      <div class="featured-item-overlay"><span class="featured-item-label">Montana Fashion</span></div>
+    </div>
+    <div class="featured-item" onclick="openLightbox(2)">
+      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1069_jrvods.jpg" alt="Wolf Pack">
+      <div class="featured-item-overlay"><span class="featured-item-label">Wolf Pack</span></div>
+    </div>
+    <div class="featured-item" onclick="openLightbox(3)">
+      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7827_myclqb.jpg" alt="Fashion">
+      <div class="featured-item-overlay"><span class="featured-item-label">Riverside Session</span></div>
+    </div>
+    <div class="featured-item" onclick="openLightbox(4)">
+      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_3995_ezzuu5.jpg" alt="Grizzly Cubs">
+      <div class="featured-item-overlay"><span class="featured-item-label">Grizzly Cubs</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section id="quote">
+  <p class="quote-text reveal">"The things we pursue obsessively are not just hobbies or interests. They are the sparks that ignite our soul, the callings that we heed without question, for in their pursuit, we find pieces of ourselves scattered across the universe."</p>
+  <div class="quote-attr reveal reveal-delay-2">Ash Juric Photography</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-image-wrap reveal">
+    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7983_oyqocl.jpg" alt="Ash Juric Photography">
+  </div>
+  <div class="about-content">
+    <span class="section-label reveal">The Vision</span>
+    <h2 class="section-title reveal reveal-delay-1">Photography Rooted<br><em>in Montana</em></h2>
+    <div class="gold-line reveal reveal-delay-1"></div>
+    <p class="reveal reveal-delay-2">
+      Based in <strong>Bozeman, Montana</strong>, Ash Juric Photography captures the texture of this place — rugged landscapes, real people, and the quiet drama that lives between fashion and wilderness.
+    </p>
+    <p class="reveal reveal-delay-2">
+      The primary focus is <strong>fashion and commercial work</strong> — editorial shoots, brand campaigns, and portrait sessions that feel honest and visually striking. Every session is shaped around the person, the light, and the land.
+    </p>
+    <p class="reveal reveal-delay-3">
+      Wildlife photography is a personal passion — the kind that pulls you out before sunrise and asks you to be still. Wolves, grizzlies, bison — Montana never stops surprising.
+    </p>
+    <a href="mailto:ashjuricphotography@gmail.com" class="btn-ghost reveal reveal-delay-3">Get in Touch</a>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-header reveal">
+    <span class="section-label">Portfolio</span>
+    <h2 class="section-title">Gallery</h2>
+    <div class="gold-line"></div>
+  </div>
+  <div class="gallery-tabs">
+    <div class="gallery-tab active" onclick="switchTab('fashion')">Fashion</div>
+    <div class="gallery-tab" onclick="switchTab('wildlife')">Wildlife</div>
+    <div class="gallery-tab" onclick="switchTab('portraits')">Portraits</div>
+    <div class="gallery-tab" onclick="switchTab('nature')">Nature</div>
+    <div class="gallery-tab" onclick="switchTab('other')">Other</div>
+  </div>
+
+  <div class="gallery-panel active" id="panel-fashion">
+    <div class="gallery-grid" id="fashionGrid">
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('fashion',0)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_6537_wdvdxy.jpg" alt="Fashion"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('fashion',1)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7674_ed2d1f.jpg" alt="Fashion"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('fashion',2)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_6799_o1pscd.jpg" alt="Fashion"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('fashion',3)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7827_myclqb.jpg" alt="Fashion"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('fashion',4)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7069_upprot.jpg" alt="Fashion"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('fashion',5)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7293_axzx4v.jpg" alt="Fashion"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('fashion',6)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7558_agnpjy.jpg" alt="Fashion"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('fashion',7)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7983_oyqocl.jpg" alt="Fashion"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('fashion',8)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_8007_qowwzk.jpg" alt="Fashion"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+    </div>
+  </div>
+
+  <div class="gallery-panel" id="panel-wildlife">
+    <div class="gallery-grid" id="wildlifeGrid">
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',0)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1069_jrvods.jpg" alt="Wolves"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',1)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1063_b7bpkr.jpg" alt="Grizzly Bear"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',2)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1072_w1hc7n.jpg" alt="Grizzly Bear"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',3)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1027_fwjfby.jpg" alt="Grizzly Bear"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',4)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1123_on0uln.jpg" alt="Bison"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',5)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1744_hw1ndm.jpg" alt="Bison"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',6)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_2726_eecjz9.jpg" alt="Bighorn Sheep"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',7)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_3995_ezzuu5.jpg" alt="Grizzly Cubs"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',8)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4316_uokiew.jpg" alt="Grizzly Cubs"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',9)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4339_va55i1.jpg" alt="Grizzly"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',10)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4551_magco6.jpg" alt="Grizzly"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',11)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4835_aagskt.jpg" alt="Bighorn Sheep"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',12)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4840_wodjjw.jpg" alt="Bighorn Ram"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',13)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1224_acy5l0.jpg" alt="Coyotes"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',14)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1232_m5bywv.jpg" alt="Coyote"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',15)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_2836_ykncrx.jpg" alt="Wolf"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',16)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4419_txzh0w.jpg" alt="Coyote"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',17)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_2002_hxhaof.jpg" alt="Coyote"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+    </div>
+  </div>
+
+  <div class="gallery-panel" id="panel-portraits">
+    <div class="gallery-coming-soon">
+      <span class="section-label">Coming Soon</span>
+      <p style="color:var(--silver);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;margin-top:1rem;">Portraits gallery — images coming soon.</p>
+    </div>
+  </div>
+  <div class="gallery-panel" id="panel-nature">
+    <div class="gallery-coming-soon">
+      <span class="section-label">Coming Soon</span>
+      <p style="color:var(--silver);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;margin-top:1rem;">Nature gallery — images coming soon.</p>
+    </div>
+  </div>
+  <div class="gallery-panel" id="panel-other">
+    <div class="gallery-coming-soon">
+      <span class="section-label">Coming Soon</span>
+      <p style="color:var(--silver);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;margin-top:1rem;">Additional work — images coming soon.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULING -->
+<section id="scheduling">
+  <div class="scheduling-inner">
+    <span class="section-label reveal">Book a Session</span>
+    <h2 class="section-title reveal reveal-delay-1">Appointments</h2>
+    <div class="gold-line reveal reveal-delay-1"></div>
+    <div class="scheduling-intro">
+      <div class="scheduling-info reveal reveal-delay-2">
+        <p>Open to fashion editorials, commercial campaigns, brand content, and portrait sessions throughout Montana and the Mountain West.</p>
+        <p>Use the calendar below to find a time that works, or send a message to start the conversation.</p>
+        <a href="mailto:ashjuricphotography@gmail.com" class="btn-ghost" style="margin-top:.5rem;">Send a Message</a>
+      </div>
+      <div class="scheduling-services reveal reveal-delay-3">
+        <div class="service-item"><span class="service-name">Fashion &amp; Editorial</span><span class="service-detail">Half &amp; full day</span></div>
+        <div class="service-item"><span class="service-name">Commercial</span><span class="service-detail">Brand &amp; product</span></div>
+        <div class="service-item"><span class="service-name">Portraits</span><span class="service-detail">Individual &amp; group</span></div>
+        <div class="service-item"><span class="service-name">On Location</span><span class="service-detail">Montana &amp; beyond</span></div>
+      </div>
+    </div>
+    <div class="calendar-container reveal">
+      <div class="calendar-header">
+        <div class="calendar-dot"></div>
+        <span class="calendar-header-text">Schedule a Session</span>
+      </div>
+      <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3AEHBRSZS0MePbZhs7mUhIXI014qHNFqS9XuuKm13PHZf0-AUzIlL--CjGi1ixIyih6UrvyIWL?gv=true" style="border: 0" width="100%" height="600" frameborder="0" title="Book with Ash Juric Photography"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><img src="images/Logo1.png" alt="Ash Juric Photography"></div>
+  <div class="footer-center">
+    <p>© 2026 Ash Juric Photography &nbsp;·&nbsp; Bozeman, Montana</p>
+    <div style="margin-top:.8rem; display:flex; gap:1.5rem; justify-content:center;">
+      <a href="mailto:ashjuricphotography@gmail.com" style="font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.2em;color:rgba(168,164,158,.5);text-decoration:none;text-transform:uppercase;transition:color .3s;" onmouseover="this.style.color='#b8965a'" onmouseout="this.style.color='rgba(168,164,158,.5)'">✉ Email</a>
+      <a href="https://instagram.com/ashjuric" target="_blank" style="font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.2em;color:rgba(168,164,158,.5);text-decoration:none;text-transform:uppercase;transition:color .3s;" onmouseover="this.style.color='#b8965a'" onmouseout="this.style.color='rgba(168,164,158,.5)'">&#9632; Instagram</a>
+    </div>
+  </div>
+  <div class="footer-right"><div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#scheduling">Book</a>
+    <a href="#about">About</a>
+  </div></div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
+  <div class="lightbox-close" onclick="closeLightbox()">Close &nbsp;✕</div>
+  <span class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">‹</span>
+  <img id="lightbox-img" src="" alt="">
+  <span class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">›</span>
+</div>
+
+<script>
+// CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  ring.style.left = e.clientX + 'px';
+  ring.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a,button,.gallery-grid-item,.featured-item,.gallery-tab,.lightbox-nav,.lightbox-close').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.width='18px'; cursor.style.height='18px'; ring.style.width='52px'; ring.style.height='52px'; });
+  el.addEventListener('mouseleave', () => { cursor.style.width='10px'; cursor.style.height='10px'; ring.style.width='36px'; ring.style.height='36px'; });
+});
+
+// NAVBAR
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+
+// GALLERY TABS
+function switchTab(name) {
+  const tabNames = ['fashion','wildlife','portraits','nature','other'];
+  document.querySelectorAll('.gallery-tab').forEach((t,i) => t.classList.toggle('active', tabNames[i] === name));
+  document.querySelectorAll('.gallery-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('panel-' + name);
+  if (panel) { panel.classList.add('active'); panel.scrollIntoView({behavior:'smooth', block:'start'}); }
+}
+
+// LIGHTBOX
+const galleries = {
+  fashion: ['https://res.cloudinary.com/dpxsctibe/image/upload/IMG_6537_wdvdxy.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7674_ed2d1f.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_6799_o1pscd.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7827_myclqb.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7069_upprot.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7293_axzx4v.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7558_agnpjy.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7983_oyqocl.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_8007_qowwzk.jpg'],
+  wildlife: ['https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1069_jrvods.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1063_b7bpkr.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1072_w1hc7n.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1027_fwjfby.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1123_on0uln.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1744_hw1ndm.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_2726_eecjz9.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_3995_ezzuu5.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4316_uokiew.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4339_va55i1.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4551_magco6.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4835_aagskt.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4840_wodjjw.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1224_acy5l0.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1232_m5bywv.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_2836_ykncrx.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4419_txzh0w.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_2002_hxhaof.jpg'],
+  featured: ['https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4551_magco6.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_6537_wdvdxy.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1069_jrvods.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7827_myclqb.jpg','https://res.cloudinary.com/dpxsctibe/image/upload/IMG_3995_ezzuu5.jpg']
+};
+let currentGallery = 'featured';
+let currentIndex = 0;
+
+function openLightbox(index) {
+  currentGallery = 'featured';
+  currentIndex = index;
+  showLightbox();
+}
+function openGalleryLightbox(gallery, index) {
+  currentGallery = gallery;
+  currentIndex = index;
+  showLightbox();
+}
+function showLightbox() {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightbox-img').src = galleries[currentGallery][currentIndex];
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeLightboxOnBg(e) { if (e.target === document.getElementById('lightbox')) closeLightbox(); }
+function lightboxNav(dir) {
+  const imgs = galleries[currentGallery];
+  currentIndex = (currentIndex + dir + imgs.length) % imgs.length;
+  document.getElementById('lightbox-img').src = imgs[currentIndex];
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') lightboxNav(1);
+  if (e.key === 'ArrowLeft') lightboxNav(-1);
+});
+
+// SCROLL REVEAL
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
