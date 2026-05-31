@@ -265,7 +265,7 @@
       <div class="dropdown-menu">
         <a href="#gallery" onclick="switchTab('fashion');return false;">Fashion</a>
         <a href="#gallery" onclick="switchTab('wildlife');return false;">Wildlife</a>
-        <a href="#gallery" onclick="switchTab('portraits');return false;">Portraits</a>
+        <a href="#gallery" onclick="switchTab('people');return false;">People</a>
         <a href="#gallery" onclick="switchTab('nature');return false;">Nature</a>
         <a href="#gallery" onclick="switchTab('other');return false;">Other</a>
       </div>
@@ -281,15 +281,15 @@
 <!-- HERO — mix of fashion + wildlife -->
 <section id="home">
   <div class="hero-panel">
-    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1069_jrvods.jpg" alt="Wolves in Snow">
+    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4551_magco6.jpg" alt="Wildlife">
     <div class="hero-panel-overlay"></div>
   </div>
   <div class="hero-panel">
-    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7827_myclqb.jpg" alt="Montana Fashion">
+    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7983_oyqocl.jpg" alt="Montana Fashion">
     <div class="hero-panel-overlay"></div>
   </div>
   <div class="hero-panel">
-    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4551_magco6.jpg" alt="Grizzly Bear">
+    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4316_uokiew.jpg" alt="Wildlife" style="object-position: 35% center;">
     <div class="hero-panel-overlay"></div>
   </div>
   <div class="hero-overlay">
@@ -309,7 +309,7 @@
   </div>
   <div class="featured-grid" id="featuredGrid">
     <div class="featured-item" onclick="openLightbox(0)">
-      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1027_fwjfby.jpg" alt="Grizzly Bear">
+      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1027_fwjfby.jpg" alt="Grizzly Bear" style="object-position: 20% center;">
       <div class="featured-item-overlay"><span class="featured-item-label">Grizzly Country</span></div>
     </div>
     <div class="featured-item" onclick="openLightbox(1)">
@@ -317,7 +317,7 @@
       <div class="featured-item-overlay"><span class="featured-item-label">Montana Fashion</span></div>
     </div>
     <div class="featured-item" onclick="openLightbox(2)">
-      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4316_uokiew.jpg" alt="Moose">
+      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto/f_auto/v1780118926/IMG_2836_ykncrx.jpg" alt="Wildlife">
       <div class="featured-item-overlay"><span class="featured-item-label">Montana Wildlife</span></div>
     </div>
     <div class="featured-item" onclick="openLightbox(3)">
@@ -325,7 +325,7 @@
       <div class="featured-item-overlay"><span class="featured-item-label">Coyotes</span></div>
     </div>
     <div class="featured-item" onclick="openLightbox(4)">
-      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7069_upprot.jpg" alt="Fashion">
+      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7069_upprot.jpg" alt="Fashion" style="object-position: center top;">
       <div class="featured-item-overlay"><span class="featured-item-label">Fashion</span></div>
     </div>
   </div>
@@ -369,7 +369,7 @@
   <div class="gallery-tabs">
     <div class="gallery-tab active" onclick="switchTab('fashion')">Fashion</div>
     <div class="gallery-tab" onclick="switchTab('wildlife')">Wildlife</div>
-    <div class="gallery-tab" onclick="switchTab('portraits')">Portraits</div>
+    <div class="gallery-tab" onclick="switchTab('people')">People</div>
     <div class="gallery-tab" onclick="switchTab('nature')">Nature</div>
     <div class="gallery-tab" onclick="switchTab('other')">Other</div>
   </div>
@@ -412,10 +412,10 @@
     </div>
   </div>
 
-  <div class="gallery-panel" id="panel-portraits">
+  <div class="gallery-panel" id="panel-people">
     <div class="gallery-coming-soon">
       <span class="section-label">Coming Soon</span>
-      <p style="color:var(--silver);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;margin-top:1rem;">Portraits gallery — images coming soon.</p>
+      <p style="color:var(--silver);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;margin-top:1rem;">People gallery — images coming soon.</p>
     </div>
   </div>
   <div class="gallery-panel" id="panel-nature">
@@ -447,7 +447,7 @@
       <div class="scheduling-services reveal reveal-delay-3">
         <div class="service-item"><span class="service-name">Fashion &amp; Editorial</span><span class="service-detail">Half &amp; full day</span></div>
         <div class="service-item"><span class="service-name">Commercial</span><span class="service-detail">Brand &amp; product</span></div>
-        <div class="service-item"><span class="service-name">Portraits</span><span class="service-detail">Individual &amp; group</span></div>
+        <div class="service-item"><span class="service-name">People</span><span class="service-detail">Individual &amp; group</span></div>
         <div class="service-item"><span class="service-name">On Location</span><span class="service-detail">Montana &amp; beyond</span></div>
       </div>
     </div>
@@ -509,7 +509,7 @@ function toggleMenu() { document.getElementById('navLinks').classList.toggle('op
 
 // GALLERY TABS
 function switchTab(name) {
-  const tabNames = ['fashion','wildlife','portraits','nature','other'];
+  const tabNames = ['fashion','wildlife','people','nature','other'];
   document.querySelectorAll('.gallery-tab').forEach((t,i) => t.classList.toggle('active', tabNames[i] === name));
   document.querySelectorAll('.gallery-panel').forEach(p => p.classList.remove('active'));
   const panel = document.getElementById('panel-' + name);
