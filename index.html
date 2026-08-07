@@ -42,8 +42,8 @@
   .nav-hamburger span { width: 24px; height: 1px; background: var(--silver); transition: all .3s; }
 
   /* HERO */
-  #home { height: 100vh; position: relative; display: grid; grid-template-columns: 1fr 1fr 1fr; overflow: hidden; }
-  .hero-panel { position: relative; overflow: hidden; }
+  #home { height: 100vh; position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: hidden; }
+  .hero-panel { position: relative; overflow: hidden; min-width: 0; }
   .hero-panel img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.16,1,.3,1), filter .6s; filter: brightness(.5) saturate(.8); }
   .hero-panel:hover img { transform: scale(1.05); filter: brightness(.65) saturate(.9); }
   .hero-panel-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(5,5,5,.6) 100%); }
@@ -96,7 +96,7 @@
   .gallery-tab { font-family: 'Cinzel', serif; font-size: .62rem; letter-spacing: .25em; color: var(--silver); padding: .75rem 2rem .75rem 0; cursor: pointer; text-transform: uppercase; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .3s, border-color .3s; white-space: nowrap; }
   .gallery-tab:hover { color: var(--cream); }
   .gallery-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
-  .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 3px; }
   .gallery-grid-item { position: relative; overflow: hidden; aspect-ratio: 4/5; cursor: pointer; }
   .gallery-grid-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.16,1,.3,1), filter .5s; filter: brightness(.82) saturate(.85); }
   .gallery-grid-item:hover img { transform: scale(1.06); filter: brightness(1) saturate(1); }
@@ -277,18 +277,18 @@
   </div>
 </nav>
 
-<!-- HERO — western vibe: people portraits with wildlife accents -->
+<!-- HERO -->
 <section id="home">
   <div class="hero-panel">
-    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A7972_o6daqs.jpg" alt="Portrait">
+    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6636_pccokf.jpg" alt="Portrait">
     <div class="hero-panel-overlay"></div>
   </div>
   <div class="hero-panel">
-    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A7877_vqblex.jpg" alt="Wildlife">
+    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8262_uq4gb6.jpg" alt="Portrait">
     <div class="hero-panel-overlay"></div>
   </div>
   <div class="hero-panel">
-    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A7678_wgpk8g.jpg" alt="Portrait">
+    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8422_bnftwd.jpg" alt="Portrait">
     <div class="hero-panel-overlay"></div>
   </div>
   <div class="hero-overlay">
@@ -308,23 +308,23 @@
   </div>
   <div class="featured-grid" id="featuredGrid">
     <div class="featured-item" onclick="openLightbox(0)">
-      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A8262_uq4gb6.jpg" alt="Portrait">
+      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8262_uq4gb6.jpg" alt="Portrait">
       <div class="featured-item-overlay"><span class="featured-item-label">Portrait</span></div>
     </div>
     <div class="featured-item" onclick="openLightbox(1)">
-      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A6636_pccokf.jpg" alt="Portrait">
+      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6636_pccokf.jpg" alt="Portrait">
       <div class="featured-item-overlay"><span class="featured-item-label">Montana Portrait</span></div>
     </div>
     <div class="featured-item" onclick="openLightbox(2)">
-      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_9833_zqcpwa.jpg" alt="Wildlife">
+      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_9833_zqcpwa.jpg" alt="Wildlife">
       <div class="featured-item-overlay"><span class="featured-item-label">Montana Wildlife</span></div>
     </div>
     <div class="featured-item" onclick="openLightbox(3)">
-      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A7387_p6s4uq.jpg" alt="Portrait">
+      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A7387_p6s4uq.jpg" alt="Portrait">
       <div class="featured-item-overlay"><span class="featured-item-label">Portrait</span></div>
     </div>
     <div class="featured-item" onclick="openLightbox(4)">
-      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A8422_bnftwd.jpg" alt="Wildlife">
+      <img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8422_bnftwd.jpg" alt="Wildlife">
       <div class="featured-item-overlay"><span class="featured-item-label">Wildlife</span></div>
     </div>
   </div>
@@ -339,7 +339,7 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="about-image-wrap reveal">
-    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A7972_o6daqs.jpg" alt="Ash Juric Photography">
+    <img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A7972_o6daqs.jpg" alt="Ash Juric Photography">
   </div>
   <div class="about-content">
     <span class="section-label reveal">The Vision</span>
@@ -375,74 +375,74 @@
   <!-- PEOPLE GALLERY -->
   <div class="gallery-panel active" id="panel-people">
     <div class="gallery-grid" id="peopleGrid">
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',0)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A7972_o6daqs.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',1)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A8206_zcj4uw.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',2)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A8262_uq4gb6.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',3)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A8051_nwc3ed.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',4)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A6636_pccokf.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',5)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A6614_fmvc5n.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',6)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A6962_dil8th.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',7)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A6644_ccf4ec.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',8)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7827_mh30nv.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',9)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A6717_c24eo9.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',10)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A7387_p6s4uq.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',11)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_6537_tsda0k.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',12)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7558_y2qevs.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',13)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A7678_wgpk8g.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',14)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_6799_dxyyp_g.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',15)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A3491_xmycqj.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',16)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A3377_xgqvjf.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',17)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A6291_cjdhth.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',18)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A7614_t2c5fm.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',19)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A6327_bwb03l.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',20)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A5424_kqjwvn.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',21)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A6374_pzsjsc.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',22)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A4577_wienqj.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',23)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A6330_jdamnh.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',24)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A5234_d2wg9p.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',25)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A5388_heoqzz.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',26)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A6746_nxciig.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',0)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A7972_o6daqs.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',1)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8206_zcj4uw.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',2)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8262_uq4gb6.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',3)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8051_nwc3ed.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',4)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6636_pccokf.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',5)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6614_fmvc5n.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',6)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6962_dil8th.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',7)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6644_ccf4ec.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',8)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_7827_mh30nv.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',9)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6717_c24eo9.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',10)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A7387_p6s4uq.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',11)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_6537_tsda0k.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',12)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_7558_y2qevs.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',13)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A7678_wgpk8g.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',14)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_6799_dxyyp_g.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',15)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A3491_xmycqj.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',16)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A3377_xgqvjf.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',17)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6291_cjdhth.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',18)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A7614_t2c5fm.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',19)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6327_bwb03l.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',20)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A5424_kqjwvn.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',21)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6374_pzsjsc.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',22)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A4577_wienqj.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',23)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6330_jdamnh.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',24)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A5234_d2wg9p.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',25)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A5388_heoqzz.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('people',26)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6746_nxciig.jpg" alt="People"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
     </div>
   </div>
 
   <!-- WILDLIFE GALLERY -->
   <div class="gallery-panel" id="panel-wildlife">
     <div class="gallery-grid" id="wildlifeGrid">
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',0)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A7877_vqblex.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',1)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A8500_ktwzgi.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',2)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4547_n2uypl.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',3)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_9833_zqcpwa.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',4)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A8518_yjcxmg.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',5)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A8422_bnftwd.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',6)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A7925_wc5vrw.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',7)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A1531_q5m2ai.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',8)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4339_q0omng.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',9)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A0798_vxmscq.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',10)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A2022_baaeow.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',11)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A1490_iehpvp.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',12)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/B19A1510_kl2p1m.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',13)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4818_sdjvck.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',14)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4645_prgkft.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',15)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_0999_kdwtzr.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',16)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4840_mbfwj8.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',17)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4551_dh4laz.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',18)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4565_yugem4.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',19)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4290_flutlh.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',20)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4419_p8obht.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',21)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4220_lrwfxl.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',22)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4143_fksz2q.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',23)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_0156_xw088l.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',24)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_2836_znir2n.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',25)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_3841_ooj0fg.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',26)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_0175_wi61m5.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',27)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1124_jg9ip5.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',28)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1389_ptfjlt.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',29)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_2002_ar6uvw.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',30)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_9954_2_rco2wu.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',31)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1027_ptvhy0.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',32)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_0942_crbupt.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',33)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_9753_g1qnaz.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
-      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',34)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/IMG_9146_suwcom.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',0)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A7877_vqblex.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',1)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8500_ktwzgi.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',2)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4547_n2uypl.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',3)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_9833_zqcpwa.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',4)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8518_yjcxmg.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',5)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8422_bnftwd.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',6)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A7925_wc5vrw.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',7)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A1531_q5m2ai.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',8)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4339_q0omng.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',9)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A0798_vxmscq.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',10)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A2022_baaeow.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',11)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A1490_iehpvp.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',12)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A1510_kl2p1m.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',13)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4818_sdjvck.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',14)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4645_prgkft.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',15)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_0999_kdwtzr.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',16)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4840_mbfwj8.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',17)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4551_dh4laz.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',18)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4565_yugem4.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',19)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4290_flutlh.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',20)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4419_p8obht.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',21)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4220_lrwfxl.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',22)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4143_fksz2q.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',23)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_0156_xw088l.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',24)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_2836_znir2n.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',25)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_3841_ooj0fg.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',26)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_0175_wi61m5.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',27)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_1124_jg9ip5.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',28)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_1389_ptfjlt.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',29)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_2002_ar6uvw.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',30)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_9954_2_rco2wu.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',31)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_1027_ptvhy0.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',32)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_0942_crbupt.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',33)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_9753_g1qnaz.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
+      <div class="gallery-grid-item" onclick="openGalleryLightbox('wildlife',34)"><img src="https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_9146_suwcom.jpg" alt="Wildlife"><div class="gallery-grid-item-overlay"><div class="gallery-zoom-icon">+</div></div></div>
     </div>
   </div>
 
@@ -468,9 +468,9 @@
     <div class="gold-line reveal reveal-delay-1"></div>
     <div class="scheduling-intro">
       <div class="scheduling-info reveal reveal-delay-2">
-        <p>Open to fashion editorials, commercial campaigns, brand content, and portrait sessions throughout Montana and the Mountain West.</p>
-        <p>Use the calendar below to find a time that works, or send a message to start the conversation.</p>
-        <a href="mailto:ashjuricphotography@gmail.com" class="btn-ghost" style="margin-top:.5rem;">Send a Message</a>
+        <p>Open to portrait sessions, fashion editorials, commercial campaigns, and brand content throughout Montana and the Mountain West.</p>
+        <p>Reach out directly to schedule a session — I'll get back to you to find a time that works and talk through what you have in mind.</p>
+        <a href="mailto:ashjuricphotography@gmail.com" class="btn-ghost" style="margin-top:.5rem;">Get in Touch</a>
       </div>
       <div class="scheduling-services reveal reveal-delay-3">
         <div class="service-item"><span class="service-name">Fashion &amp; Editorial</span><span class="service-detail">Half &amp; full day</span></div>
@@ -478,13 +478,6 @@
         <div class="service-item"><span class="service-name">People</span><span class="service-detail">Individual &amp; group</span></div>
         <div class="service-item"><span class="service-name">On Location</span><span class="service-detail">Montana &amp; beyond</span></div>
       </div>
-    </div>
-    <div class="calendar-container reveal">
-      <div class="calendar-header">
-        <div class="calendar-dot"></div>
-        <span class="calendar-header-text">Schedule a Session</span>
-      </div>
-      <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3AEHBRSZS0MePbZhs7mUhIXI014qHNFqS9XuuKm13PHZf0-AUzIlL--CjGi1ixIyih6UrvyIWL?gv=true" style="border: 0" width="100%" height="600" frameborder="0" title="Book with Ash Juric Photography"></iframe>
     </div>
   </div>
 </section>
@@ -547,77 +540,77 @@ function switchTab(name) {
 // LIGHTBOX
 const galleries = {
   people: [
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A7972_o6daqs.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A8206_zcj4uw.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A8262_uq4gb6.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A8051_nwc3ed.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A6636_pccokf.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A6614_fmvc5n.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A6962_dil8th.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A6644_ccf4ec.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7827_mh30nv.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A6717_c24eo9.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A7387_p6s4uq.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_6537_tsda0k.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_7558_y2qevs.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A7678_wgpk8g.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_6799_dxyyp_g.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A3491_xmycqj.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A3377_xgqvjf.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A6291_cjdhth.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A7614_t2c5fm.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A6327_bwb03l.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A5424_kqjwvn.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A6374_pzsjsc.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A4577_wienqj.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A6330_jdamnh.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A5234_d2wg9p.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A5388_heoqzz.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A6746_nxciig.jpg'
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A7972_o6daqs.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8206_zcj4uw.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8262_uq4gb6.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8051_nwc3ed.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6636_pccokf.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6614_fmvc5n.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6962_dil8th.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6644_ccf4ec.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_7827_mh30nv.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6717_c24eo9.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A7387_p6s4uq.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_6537_tsda0k.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_7558_y2qevs.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A7678_wgpk8g.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_6799_dxyyp_g.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A3491_xmycqj.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A3377_xgqvjf.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6291_cjdhth.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A7614_t2c5fm.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6327_bwb03l.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A5424_kqjwvn.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6374_pzsjsc.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A4577_wienqj.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6330_jdamnh.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A5234_d2wg9p.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A5388_heoqzz.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6746_nxciig.jpg'
   ],
   wildlife: [
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A7877_vqblex.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A8500_ktwzgi.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4547_n2uypl.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_9833_zqcpwa.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A8518_yjcxmg.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A8422_bnftwd.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A7925_wc5vrw.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A1531_q5m2ai.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4339_q0omng.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A0798_vxmscq.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A2022_baaeow.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A1490_iehpvp.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A1510_kl2p1m.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4818_sdjvck.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4645_prgkft.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_0999_kdwtzr.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4840_mbfwj8.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4551_dh4laz.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4565_yugem4.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4290_flutlh.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4419_p8obht.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4220_lrwfxl.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_4143_fksz2q.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_0156_xw088l.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_2836_znir2n.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_3841_ooj0fg.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_0175_wi61m5.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1124_jg9ip5.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1389_ptfjlt.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_2002_ar6uvw.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_9954_2_rco2wu.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_1027_ptvhy0.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_0942_crbupt.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_9753_g1qnaz.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_9146_suwcom.jpg'
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A7877_vqblex.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8500_ktwzgi.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4547_n2uypl.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_9833_zqcpwa.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8518_yjcxmg.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8422_bnftwd.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A7925_wc5vrw.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A1531_q5m2ai.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4339_q0omng.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A0798_vxmscq.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A2022_baaeow.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A1490_iehpvp.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A1510_kl2p1m.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4818_sdjvck.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4645_prgkft.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_0999_kdwtzr.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4840_mbfwj8.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4551_dh4laz.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4565_yugem4.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4290_flutlh.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4419_p8obht.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4220_lrwfxl.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_4143_fksz2q.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_0156_xw088l.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_2836_znir2n.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_3841_ooj0fg.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_0175_wi61m5.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_1124_jg9ip5.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_1389_ptfjlt.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_2002_ar6uvw.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_9954_2_rco2wu.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_1027_ptvhy0.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_0942_crbupt.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_9753_g1qnaz.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_9146_suwcom.jpg'
   ],
   featured: [
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A8262_uq4gb6.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A6636_pccokf.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/IMG_9833_zqcpwa.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A7387_p6s4uq.jpg',
-    'https://res.cloudinary.com/dpxsctibe/image/upload/B19A8422_bnftwd.jpg'
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8262_uq4gb6.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A6636_pccokf.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/IMG_9833_zqcpwa.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A7387_p6s4uq.jpg',
+    'https://res.cloudinary.com/dpxsctibe/image/upload/q_auto:best,f_auto/B19A8422_bnftwd.jpg'
   ]
 };
 let currentGallery = 'featured';
